@@ -2,3 +2,13 @@
 user guerh,Hyderabadi Biryani, 1 plates, Total price: 499/-
 Name 5,Qabooli Biryani, 5 plates, Total price: 3995/-
 Name PAVAN	,Qabooli Biryani, 5 plates, Total price: 3995/-
+Name pavan,Hyderabadi Biryani, 3 plates, Total price: 1497/-
+Name 11,Hyderabadi Biryani, 1 plates, Total price: 499/-
+Name j,Mirchi ka Salan, 0 plates, Total price: 0/-
+Name pavan,Mutton Dalcha, 8 plates, Total price: 3992/-
+Name pavan,Mutton Dalcha, 9 plates, Total price: 4491/-
+Name pavan,Mirchi ka Salan, 8 plates, Total price: 2392/-
+Name  ,Mirchi ka Salan, 9 plates, Total price: 2691/-
+Name pavan,Mutton Dalcha, 9 plates, Total price: 4491/-
+Name pavan,Mirchi ka Salan, 9 plates, Total price: 2691/-
+Name pavan,Mutton Dalcha, 9 plates, Total price: 4491/-

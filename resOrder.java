@@ -1,14 +1,15 @@
-package resto.RestaurantOrder_GX;
 import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class resOrder {
+public class resOrder{
 
+    // Method to calculate total price
     public static int calculateTotalPrice(int price, int plates) {
         return price * plates;
     }
 
+    // Method to write order details to file
     public static void writeToFile(String fileName, String orderDetails) {
         try {
             FileWriter fileWriter = new FileWriter(fileName, true);
@@ -20,18 +21,40 @@ public class resOrder {
         }
     }
 
+    // Method to get input from user
     public static String getInput(Scanner scanner) {
-
         String input = scanner.nextLine();
+        if (input.isEmpty()) {
+            System.out.println("Invalid input, please enter a valid input");
+            return getInput(scanner);
+        }
+        //validate with regex
+        String regex = "^[a-zA-Z ]+$";
+        if (!input.matches(regex)) {
+            System.out.println(
+                    "\n\n                                                                      Please enter a valid name");
+            return getInput(scanner);
+        }
         return input;
     }
 
+
+    // Method to get order from user
     public static int getOrder(Scanner scanner) {
-
-        int input = scanner.nextInt();
-        return input;
+        String input = scanner.nextLine();
+        try {
+            int orderNumber = Integer.parseInt(input);
+            return orderNumber;
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid order number, please enter a valid number");
+            // call the method again
+            return getOrder(scanner);
+        }
     }
 
+
+
+    // Main method
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -48,6 +71,7 @@ public class resOrder {
         String k = "Nazaqati Boti Kebab";
         String l = "Sofiana Biryani";
 
+        // Menu
         System.out.println(
                 "\n\n                                                                       || WELCOME TO LPU RESTOBAR ||");
         System.out.println(
@@ -66,15 +90,37 @@ public class resOrder {
                 "\n\n                                6. Keama samosa (199/-).                                  12. Sofiana Biryani (499/-).");
         System.out.println("\n\n                                                    <--Pick Any Dish You Want-->\n\n");
 
-        int order, plates;
+        // Taking input from user
+        int  plates;
         System.out.print("\n                                                        customer name  = ");
         String userInput = getInput(sc);
+        // validate the user input
+      //  String regex = "^[a-zA-Z ]+$"; // regular expression pattern for matching names
+        // System.out.println("\n\n                                                            ORDER NOW");
+        System.out.println("\n                                                       welcome " + userInput + "!!");
         System.out.print("\n                                                        Dish Number  = ");
         int orderInput = getOrder(sc);
+
+        // validate the order input
+        if (orderInput < 1 || orderInput > 12 || orderInput == 0) {
+            System.out.println("Invalid order number , Please enter a valid number");
+            orderInput = getOrder(sc);
+        }
         System.out.print("\n                                                        no.of plates = ");
-        plates = sc.nextInt();
+
+
+
+
+            plates = getOrder(sc);
+
+           // validate the plates input
+        if (plates < 1 || plates > 10 || plates == 0) {
+            System.out.println("Invalid plates number , Please enter a valid number");
+            plates = getOrder(sc);
+        }
         String orderDetails;
         int totalPrice;
+
         switch (orderInput) {
             case 1:
                 System.out.printf("                                                %s  --> price  = 499/-\n\n", a);
@@ -83,10 +129,6 @@ public class resOrder {
                         a, totalPrice);
                 System.out.printf("                                                      YOUR TOTAL  =  %d/-\n",
                         totalPrice);
-                // orderDetails = String.format("%s, %d plates, Total price: %d/-\n", a, plates,
-                // totalPrice);
-                // orderDetails = String.format("%s,user, %d plates, Total price: %d
-                // /-\n",userInput, a, plates, totalPrice);
                 orderDetails = String.format("Name %s,%s, %d plates, Total price: %d/-\n", userInput, a, plates,
                         totalPrice);
 
@@ -214,7 +256,7 @@ public class resOrder {
                 writeToFile("orders.txt", orderDetails);
                 break;
             default:
-                System.out.println("                                                Invalid Input");
+                System.out.println("                   Invalid Input  ==> Please Try Again! Requested order is not available \n\n");
         }
     }
 }
